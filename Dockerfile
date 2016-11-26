@@ -10,6 +10,8 @@ WORKDIR /app
 # Install node requirements and clean up temporary files
 COPY package.json package.json
 RUN apt-get update && \
+    npm cache clear && \
+    rm -rf ~app/.npm && \
     su app -c "npm install" && \
     npm cache clear && \
     apt-get autoremove -y && \
